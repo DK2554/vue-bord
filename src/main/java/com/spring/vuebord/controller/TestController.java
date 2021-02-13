@@ -1,6 +1,6 @@
 package com.spring.vuebord.controller;
 
-import com.spring.vuebord.service.TestService;
+import com.spring.vuebord.service.TestServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestController {
 
-    private final TestService testService;
+    private final TestServiceImpl testService;
 
     @GetMapping("/user")
     public List<HashMap<String,Object>> getUser(){
