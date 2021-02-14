@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.vuebord.bord.mapper.BoardMapper" >
+    <select id="boardCount" resultType="int">
+        select count(*) from board
+    </select>
+    <select id="boardList" resultType="com.spring.vuebord.bord.domain.BoardVO">
+        SELECT
+        *
+        FROM BOARD
+    </select>
+
+    <select id="boardDetail" parameterType="int" resultType="com.spring.vuebord.bord.domain.BoardVO">
+        SELECT
+        *
+        FROM BOARD
+        WHERE
+        BNO = #{bno}
+    </select>
+
+    <insert id="boardWrite" parameterType="com.spring.vuebord.bord.domain.BoardVO">
+        INSERT INTO
+        BOARD (BNO, title,CONTENT,WRITER,RDATE)
+        VALUES(#{bno},#{title},#{content},#{writer},now())
+    </insert>
+
+    <update id="boardUpdate" parameterType="com.spring.vuebord.bord.domain.BoardVO">
+        UPDATE BOARD
+        SET
+        <if test="title != null">
+            title = #{title}
+        </if>
+        <if test="title != null and content != null"> , </if>
+        <if test="content != null">
+            CONTENT = #{content}
+        </if>
+        WHERE BNO = #{bno}
+    </update>
+
+    <delete id="boardDelete" parameterType="int">
+        DELETE FROM BOARD WHERE BNO = #{bno}
+    </delete>
+</mapper>
